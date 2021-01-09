@@ -16,7 +16,7 @@ function F2D() {
   const [num, den] = generateFraction(5);
   console.log();
   return {
-    q: `How do you write ${int} and ${num} / ${den.toLocaleString()} as a decimal?`,
+    q: `How do you write ${int} <sup>${num}</sup>&frasl;<sub>${den.toLocaleString()}</sub> as a decimal?`,
     a: int + num / den
   };
 }
@@ -26,7 +26,7 @@ function D2F() {
   const den = 10 ** ri(1, 5);
   return {
     q: `How do you write ${(num / den)} as a fraction?`,
-    a: `${num} / ${den}`
+    a: `<sup>${num}</sup>&frasl;<sub>${den}</sub>`
   };
 }
 
@@ -43,7 +43,7 @@ function F2P() {
   const num = ri(1, 99);
   const den = ri(num, 100);
   return {
-    q: `What is the percentage value of ${num} / ${den}?`,
+    q: `What is the percentage value of <sup>${num}</sup>&frasl;<sub>${den}</sub>?`,
     a: parseFloat((100 * num / den).toPrecision(4)) + '%'
   };
 }
@@ -64,9 +64,9 @@ document.getElementById('nextQuestion').addEventListener('click', () => {
   const types = getChecked();
   const rand = types[Math.floor(Math.random() * types.length)];
   const qna = window[rand]();
-  document.getElementById('question').textContent = qna.q;
+  document.getElementById('question').innerHTML = qna.q;
   document.getElementById('answer').style.visibility = 'hidden';
-  document.getElementById('answer').textContent = qna.a;
+  document.getElementById('answer').innerHTML = qna.a;
 });
 
 const answerButton = document.getElementById('showAnswer');
