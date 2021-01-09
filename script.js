@@ -64,6 +64,7 @@ document.getElementById('nextQuestion').addEventListener('click', () => {
   const types = getChecked();
   const rand = types[Math.floor(Math.random() * types.length)];
   const qna = window[rand]();
+  document.getElementById('cardTitle').textContent = document.getElementById(rand).nextElementSibling.textContent;
   document.getElementById('question').innerHTML = qna.q;
   document.getElementById('answer').style.visibility = 'hidden';
   document.getElementById('answer').innerHTML = qna.a;
