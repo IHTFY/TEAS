@@ -1,3 +1,5 @@
+M.AutoInit();
+
 function ri(min, max) {
   return Math.floor(min + Math.random() * (max - min + 1));
 }
@@ -71,3 +73,5 @@ const answerButton = document.getElementById('showAnswer');
 answerButton.addEventListener('click',()=>{
   document.getElementById('answer').style.visibility = 'visible'
 });
+
+document.getElementById('nextQuestion').click();
