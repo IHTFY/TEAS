@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TEAS Math Practice</title>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <h1>TEAS Math Practice</h1>
+    <fieldset>
+      <legend>Types</legend>
+      <div>
+        <input type="checkbox" name="types" id="F2D" value="F2D" checked />
+        <label for="F2D">Fraction to Decimal</label>
+      </div>
+      <div>
+        <input type="checkbox" name="types" id="D2F" value="D2F" checked />
+        <label for="D2F">Decimal to Fraction</label>
+      </div>
+      <div>
+        <input type="checkbox" name="types" id="P2D" value="P2D" checked />
+        <label for="P2D">Percentage to Decimal</label>
+      </div>
+      <div>
+        <input type="checkbox" name="types" id="F2P" value="F2P" checked />
+        <label for="F2P">Fraction to Percentage</label>
+      </div>
+      <div>
+        <input type="checkbox" name="types" id="D2P" value="D2P" checked />
+        <label for="D2F">Decimal to Percentage</label>
+      </div>
+    </fieldset>
+
+    <h1>
+      Question
+      <button id="nextQuestion">Next</button>
+    </h1>
+    <div id="question"></div>
+
+    <h1>Answer
+      <button id="showAnswer">Show</button>
+    </h1>
+    <div id="answer"></div>
+  </body>
+</html>
