@@ -62,7 +62,7 @@ function getChecked() {
 
 document.getElementById('nextQuestion').addEventListener('click', () => {
   const types = getChecked();
-  const rand = types[Math.floor(Math.random() * types.length)];
+  const rand = types[ri(0, types.length - 1)];
   const qna = window[rand]();
   document.getElementById('cardTitle').textContent = document.getElementById(rand).nextElementSibling.textContent;
   document.getElementById('question').innerHTML = qna.q;
@@ -71,7 +71,7 @@ document.getElementById('nextQuestion').addEventListener('click', () => {
 });
 
 const answerButton = document.getElementById('showAnswer');
-answerButton.addEventListener('click',()=>{
+answerButton.addEventListener('click', () => {
   document.getElementById('answer').style.visibility = 'visible'
 });
 
