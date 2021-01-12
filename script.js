@@ -1,8 +1,6 @@
 M.AutoInit();
 
-function ri(min, max) {
-  return Math.floor(min + Math.random() * (max - min + 1));
-}
+const ri = (min, max) => Math.floor(min + Math.random() * (max - min + 1));
 
 function generateFraction(len = 4) {
   const zeros = ri(1, len);
@@ -56,9 +54,7 @@ function D2P() {
   };
 }
 
-function getChecked() {
-  return [...document.getElementsByName('types')].filter(i => i.checked).map(i => i.id);
-}
+const getChecked = () => [...document.getElementsByName('types')].filter(i => i.checked).map(i => i.id);
 
 document.getElementById('nextQuestion').addEventListener('click', () => {
   const types = getChecked();
@@ -71,8 +67,6 @@ document.getElementById('nextQuestion').addEventListener('click', () => {
 });
 
 const answerButton = document.getElementById('showAnswer');
-answerButton.addEventListener('click', () => {
-  document.getElementById('answer').style.visibility = 'visible'
-});
+answerButton.addEventListener('click', () => document.getElementById('answer').style.visibility = 'visible');
 
 document.getElementById('nextQuestion').click();
