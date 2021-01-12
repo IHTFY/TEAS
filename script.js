@@ -2,6 +2,8 @@ M.AutoInit();
 
 const ri = (min, max) => Math.floor(min + Math.random() * (max - min + 1));
 
+const frac = (num, den) => `<sup>${num}</sup>&frasl;<sub>${den}</sub>`;
+
 function generateFraction(len = 4) {
   const zeros = ri(1, len);
   const den = 10 ** zeros;
@@ -14,7 +16,7 @@ function F2D() {
   const [num, den] = generateFraction(5);
   console.log();
   return {
-    q: `How do you write ${int} <sup>${num}</sup>&frasl;<sub>${den.toLocaleString()}</sub> as a decimal?`,
+    q: `How do you write ${int} ${frac(num, den.toLocaleString())} as a decimal?`,
     a: int + num / den
   };
 }
@@ -24,7 +26,7 @@ function D2F() {
   const den = 10 ** ri(1, 5);
   return {
     q: `How do you write ${(num / den)} as a fraction?`,
-    a: `<sup>${num}</sup>&frasl;<sub>${den}</sub>`
+    a: frac(num, den)
   };
 }
 
@@ -41,7 +43,7 @@ function F2P() {
   const num = ri(1, 99);
   const den = ri(num, 100);
   return {
-    q: `What is the percentage value of <sup>${num}</sup>&frasl;<sub>${den}</sub>?`,
+    q: `What is the percentage value of ${frac(num, den)}?`,
     a: parseFloat((100 * num / den).toPrecision(4)) + '%'
   };
 }
