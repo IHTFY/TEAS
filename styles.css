@@ -1,10 +1,14 @@
 .header {
   color: #766eee;
-  font-weight: 300
+  font-weight: 300;
 }
 
 a:hover {
   cursor: default;
+}
+
+#proportionEq {
+  min-height: 200px;
 }
 
 .unselectable {

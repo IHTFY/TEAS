@@ -1,4 +1,15 @@
 M.AutoInit();
+document.addEventListener('DOMContentLoaded', function () {
+  var ranges = document.querySelectorAll('input[type=range]');
+  M.Range.init(ranges);
+});
+
+
+/**
+ * 
+ * Conversion
+ * 
+ */
 
 const ri = (min, max) => Math.floor(min + Math.random() * (max - min + 1));
 
@@ -72,3 +83,58 @@ const answerButton = document.getElementById('showAnswer');
 answerButton.addEventListener('click', () => document.getElementById('answer').style.visibility = 'visible');
 
 document.getElementById('nextQuestion').click();
+
+/**
+ * 
+ * Proportion
+ * 
+ */
+
+const kVal = document.getElementById('kVal');
+kVal.addEventListener('input', event => {
+  document.getElementById('kVar').style.fontSize = event.target.value + 'em';
+  interrupt();
+})
+
+const xVar = document.getElementById('xVar');
+const yVar = document.getElementById('yVar');
+let yStart = parseInt(xVar.style.fontSize);
+let yEnd = yStart * 5 * parseInt(kVal.value);
+
+let eqTimeout;
+
+function updateSizes() {
+  xVar.style.transition = 'font-size 2s ease-in-out';
+  xVar.style.fontSize = xVar.style.fontSize === '1em' ? '5em' : '1em';
+  yVar.style.transition = 'font-size 2s ease-in-out';
+  if (document.getElementById('relation').checked) {
+    // inverse
+    yEnd = (xVar.style.fontSize === '1em' ? 5 : 1) / kVal.value + 'em';
+  } else {
+    // direct 
+    yEnd = parseInt(xVar.style.fontSize) * kVal.value + 'em';
+  }
+  yVar.style.fontSize = yEnd;
+
+  eqTimeout = setTimeout(updateSizes, 2000);
+}
+updateSizes();
+
+document.getElementById('relation').addEventListener('click', () => {
+  if (document.getElementById('relation').checked) {
+    // inverse
+    document.getElementById('opVar').textContent = '/';
+
+  } else {
+    // direct
+    document.getElementById('opVar').textContent = '×';
+  }
+  interrupt();
+});
+
+function interrupt() {
+  xVar.style.transition = '';
+  yVar.style.transition = '';
+  clearTimeout(eqTimeout);
+  updateSizes();
+}
