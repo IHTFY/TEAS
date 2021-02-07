@@ -91,50 +91,30 @@ document.getElementById('nextQuestion').click();
  */
 
 const kVal = document.getElementById('kVal');
+let kSize = kVal.value;
 kVal.addEventListener('input', event => {
   document.getElementById('kVar').style.fontSize = event.target.value + 'em';
-  interrupt();
+  kSize = kVal.value;
 })
 
 const xVar = document.getElementById('xVar');
 const yVar = document.getElementById('yVar');
-let yStart = parseInt(xVar.style.fontSize);
-let yEnd = yStart * 5 * parseInt(kVal.value);
+const kVar = document.getElementById('kVar');
 
-let eqTimeout;
+// 1em in px
+const em = parseFloat(getComputedStyle(kVar).fontSize);
 
-function updateSizes() {
-  xVar.style.transition = 'font-size 2s ease-in-out';
-  xVar.style.fontSize = xVar.style.fontSize === '1em' ? '5em' : '1em';
-  yVar.style.transition = 'font-size 2s ease-in-out';
-  if (document.getElementById('relation').checked) {
-    // inverse
-    yEnd = (xVar.style.fontSize === '1em' ? 5 : 1) / kVal.value + 'em';
-  } else {
-    // direct 
-    yEnd = parseInt(xVar.style.fontSize) * kVal.value + 'em';
-  }
-  yVar.style.fontSize = yEnd;
+const xInt = setInterval(() => {
+  xVar.style.transition = 'font-size 1s ease-in-out';
+  xVar.style.fontSize = xVar.style.fontSize === '1em' ? '2em' : '1em';
+}, 1000);
 
-  eqTimeout = setTimeout(updateSizes, 2000);
-}
-updateSizes();
+
+const yInt = setInterval(() => {
+  const xSize = parseFloat(getComputedStyle(xVar).fontSize) / em;
+  yVar.style.fontSize = (document.getElementById('relation').checked ? kSize / xSize : kSize * xSize) + 'em';
+}, 8);
 
 document.getElementById('relation').addEventListener('click', () => {
-  if (document.getElementById('relation').checked) {
-    // inverse
-    document.getElementById('opVar').textContent = '/';
-
-  } else {
-    // direct
-    document.getElementById('opVar').textContent = '×';
-  }
-  interrupt();
+  document.getElementById('opVar').textContent = document.getElementById('relation').checked ? '/' : '×';
 });
-
-function interrupt() {
-  xVar.style.transition = '';
-  yVar.style.transition = '';
-  clearTimeout(eqTimeout);
-  updateSizes();
-}
