@@ -18,3 +18,20 @@ a:hover {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: #766eee;
+}
+input[type=range]::-moz-range-thumb {
+  background-color: #766eee;
+}
+input[type=range]::-ms-thumb {
+  background-color: #766eee;
+}
+/* For the globe and the text inside */
+input[type=range] + .thumb {
+  background-color: #766eee;
+}
+input[type=range] + .thumb.active .value {
+  color: white;
+}
