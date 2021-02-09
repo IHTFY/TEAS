@@ -9,7 +9,14 @@ a:hover {
 
 #proportionEq {
   font-size: 3em;
-  min-height: 300px;
+  min-height: 250px;
+}
+
+#eqWrapper {
+  height: 250px;
+  line-height: 250px;
+  text-align: center;
+  vertical-align: text-bottom;
 }
 
 .unselectable {
